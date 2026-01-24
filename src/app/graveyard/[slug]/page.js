@@ -11,8 +11,8 @@ export default async function SingleGraveyard({ params }) {
   );
 
   return (
-    <main className="py-20 px-4 max-w-7xl mx-auto">
-      <h1 className="text-4xl font-bold mb-10 capitalize">
+    <main className="py-20 px-4 max-w-7xl mx-auto pt-40">
+      <h1 className="text-2xl text-center md:text-start md:text-4xl font-bold mb-10 capitalize">
         {slug.replace(/(\d+)/, " $1")} Records
       </h1>
       <InfiniteGrid allData={graveyardData} type="Graveyard" />

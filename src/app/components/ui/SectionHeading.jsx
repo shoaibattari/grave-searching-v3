@@ -18,7 +18,7 @@ export const SectionHeading = ({
       className={`mb-16 ${isCenter ? "text-center" : "text-left"}`}
     >
       {/* Title & Highlight */}
-      <h2 className="text-3xl md:text-5xl font-serif font-bold text-slate-900 tracking-tight leading-tight">
+      <h2 className="text-2xl md:text-5xl font-serif font-bold text-slate-900 tracking-tight leading-tight">
         {title} <span className="text-emerald-600 italic">{highlight}</span>
       </h2>
 

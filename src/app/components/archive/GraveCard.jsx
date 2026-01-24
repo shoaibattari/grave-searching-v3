@@ -40,11 +40,11 @@ export default function GraveCard({ grave }) {
         {/* Main Details */}
         <div className="space-y-4">
           <div>
-            <h3 className="text-xl font-serif font-bold text-slate-900 leading-tight group-hover:text-emerald-800 transition-colors">
+            <h3 className="text-lg md:text-xl font-serif font-bold text-slate-900 leading-tight group-hover:text-emerald-800 transition-colors">
               {Name}
             </h3>
             <p className="text-[10px] font-bold text-emerald-600 uppercase tracking-[0.2em] mt-2">
-              {KHUNDI} Khundi
+              {KHUNDI}
             </p>
           </div>
 

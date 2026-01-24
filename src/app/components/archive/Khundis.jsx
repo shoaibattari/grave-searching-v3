@@ -3,6 +3,7 @@ import React, { useMemo } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { graveyardDatabase } from "@/app/constant/database";
+import CountUp from "../ui/CountUp";
 
 export default function Khundis() {
   // 1. Database se unique Khundi names aur unka count nikalna
@@ -43,7 +44,7 @@ export default function Khundis() {
                   {item.name}
                 </h3>
                 <div className="text-emerald-600 font-serif font-bold italic text-sm">
-                  {item.count}{" "}
+                  <CountUp to={item.count} />
                   <span className="text-[9px] not-italic text-slate-400">
                     Records
                   </span>

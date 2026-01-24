@@ -12,7 +12,7 @@ export default async function SingleKhundi({ params }) {
   );
 
   return (
-    <main className="py-20 px-4 max-w-7xl mx-auto min-h-screen bg-white">
+    <main className="py-20 px-4 max-w-7xl mx-auto min-h-screen bg-white pt-40">
       {/* 1. Aapka banaya hua SectionHeading yahan use karein */}
       <SectionHeading
         title="Khundi:"

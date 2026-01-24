@@ -34,6 +34,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const isHomePage = pathname === "/";
 
   // Scroll effect handle karne ke liye
   useEffect(() => {
@@ -42,6 +43,10 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const getTextColor = () => {
+    if (!isHomePage) return "text-slate-900"; // Other pages par hamesha black
+    return scrolled ? "text-slate-900" : "text-slate-100"; // Home page logic
+  };
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -61,13 +66,21 @@ export default function Navbar() {
         >
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center text-white font-black shadow-lg shadow-emerald-600/20 group-hover:rotate-12 transition-transform">
-              OMJ
+            <div
+              className={`w-24 h-24 ${
+                scrolled ? "" : "bg-emerald-600"
+              }  rounded-xl flex items-center justify-center text-white font-black shadow-lg shadow-emerald-600/20 group-hover:rotate-12 transition-transform`}
+            >
+              <img src={"/logo.png"} alt="OMJ Logo" />
             </div>
             <div>
-              <h1 className="text-sm font-black text-slate-900 leading-none uppercase tracking-tighter">
+              <h1
+                className={`text-sm font-black ${getTextColor()}  leading-none uppercase tracking-tighter`}
+              >
                 Okhai Memon <br />{" "}
                 <span className="text-emerald-600">Jamat</span>
+                <br />
+                Graveyard Portal{" "}
               </h1>
             </div>
           </Link>
@@ -112,7 +125,7 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 w-full px-4 py-2 md:hidden"
+            className="absolute top-[80%] left-0 w-full px-4 py-2 md:hidden"
           >
             <div className="bg-white rounded-3xl shadow-2xl border border-slate-100 p-6 flex flex-col gap-4">
               {navLinks.map((link) => (

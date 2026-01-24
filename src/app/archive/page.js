@@ -4,7 +4,7 @@ import { SectionHeading } from "@/app/components/ui/SectionHeading";
 
 export default function GlobalArchive() {
   return (
-    <main className="min-h-screen bg-slate-50 py-16 px-4">
+    <main className="min-h-screen bg-slate-50 py-16 px-4 pt-40">
       <div className="max-w-7xl mx-auto mt-4">
         {/* Page Header */}
         <SectionHeading

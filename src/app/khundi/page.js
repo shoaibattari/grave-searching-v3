@@ -2,6 +2,7 @@ import Link from "next/link";
 import { FaUsers, FaArrowRight } from "react-icons/fa";
 import { graveyardDatabase } from "../constant/database";
 import { SectionHeading } from "../components/ui/SectionHeading";
+import CountUp from "../components/ui/CountUp";
 
 export default function KhundiDirectory() {
   // 1. Database se unique Khundi names nikalne ka logic
@@ -12,7 +13,7 @@ export default function KhundiDirectory() {
     .sort(); // A to Z sort karne ke liye
 
   return (
-    <main className="min-h-screen bg-slate-50 py-20 px-4">
+    <main className="min-h-screen bg-slate-50 py-20 px-4 pt-40 ">
       <div className="max-w-7xl mx-auto">
         {/* Section Heading Call */}
         <SectionHeading
@@ -49,7 +50,7 @@ export default function KhundiDirectory() {
                   {/* Count Badge */}
                   <div className="mt-auto pt-4 flex flex-col items-center border-t border-slate-50 w-full">
                     <span className="text-2xl font-serif font-bold text-emerald-600">
-                      {count}
+                      <CountUp to={count} />
                     </span>
                     <span className="text-[9px] font-black uppercase tracking-widest text-slate-400">
                       Records Found

@@ -9,6 +9,9 @@ import { graveyardDatabase } from "../constant/database";
 import Khundis from "../components/archive/Khundis";
 import Graveyards from "../components/Graveyards";
 import { SectionHeading } from "../components/ui/SectionHeading";
+import CountUp from "../components/ui/CountUp";
+import ImageGallery from "../components/ui/Gallery";
+import Link from "next/link";
 
 export default function Home() {
   // 1. Dynamic Stats Calculation
@@ -28,7 +31,7 @@ export default function Home() {
       },
       {
         label: "Khundi's",
-        value: 50, // Aapke Khundis.js array ki length
+        value: 35, // Aapke Khundis.js array ki length
         icon: <FaUsers />,
         color: "text-blue-600",
       },
@@ -38,7 +41,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-white">
       {/* --- HERO SECTION --- */}
-      <header className="relative py-24 md:py-32 bg-slate-900 overflow-hidden text-center text-white">
+      <header className="relative py-24 md:py-32 bg-slate-900 overflow-hidden text-center text-white pt-40">
         <div className="absolute inset-0 opacity-10 bg-[url('/grid.svg')] bg-center" />
         <div className="relative z-10 max-w-5xl mx-auto px-4">
           <motion.span
@@ -79,7 +82,7 @@ export default function Home() {
                   {stat.icon}
                 </div>
                 <div className="text-3xl font-bold text-white">
-                  {stat.value.toLocaleString()}+
+                  <CountUp to={stat.value} />+
                 </div>
                 <div className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">
                   {stat.label}
@@ -114,10 +117,78 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- FOOTER --- */}
-      <footer className="py-12 border-t border-slate-100 text-center">
-        <div className="text-slate-400 text-xs font-bold uppercase tracking-widest">
-          Okhai Memon Jamat Digital Portal &copy; 2026
+      <section className="py-20 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <SectionHeading
+            title="Visual"
+            highlight="Archive"
+            subtitle="A collection of memories and site developments"
+          />
+          <ImageGallery />
+        </div>
+      </section>
+
+      {/* --- FOOTER SECTION: OMJ IT COMMITTEE & TECH PORTAL --- */}
+      <footer className="w-full bg-slate-900 text-white py-16 border-t border-emerald-500/30">
+        <div className="max-w-7xl mx-auto px-6">
+          {/* Main Content Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 w-full gap-12 mb-12 text-center md:text-left border-b border-white/5 pb-12">
+            {/* 1. Tech Portal Identity */}
+            <div className="flex flex-col items-center md:items-start">
+              <img src="/logo.png" className="h-40 mb-6" alt="OMJ Logo" />
+              <p className="text-slate-400 text-sm leading-relaxed max-w-xs font-medium">
+                Advanced Graveyard Searching Portal. Leveraging digital indexing
+                to provide instant access to burial records and family lineages
+                through a secure centralized archive.
+              </p>
+            </div>
+
+            {/* 2. Technical Leadership (OMJ IT Committee) */}
+            <div className="flex flex-col items-center">
+              <h4 className="text-emerald-500 font-black mb-6 uppercase tracking-[0.3em] text-[10px]">
+                App Developed By
+              </h4>
+              <a
+                className="group flex flex-col items-center transition-all bg-white/5 p-6 rounded-[2.5rem] border border-white/10 hover:bg-emerald-600/10 hover:border-emerald-500/50 shadow-2xl shadow-black/20"
+                href="https://wa.me/+923313416850"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span className="text-xl font-bold group-hover:text-emerald-400 transition-colors">
+                  Shoaib Abdul Sattar Khosa
+                </span>
+                <div className="flex flex-col items-center mt-3 space-y-1 text-center">
+                  <span className="text-slate-300 text-[11px] font-bold uppercase tracking-wider flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Vice Chairman (OMJ IT Committee)
+                  </span>
+                </div>
+              </a>
+            </div>
+
+            {/* 3. Organization & Committee */}
+            <div className="flex flex-col items-center md:items-end">
+              <h4 className="text-blue-400 font-black mb-3 md:mb-6 uppercase tracking-[0.3em] text-[10px]">
+                Supervised By
+              </h4>
+              <div className="text-center md:text-right">
+                <p className="text-2xl font-black tracking-tight text-white uppercase">
+                  Okhai Memon Jamat
+                </p>
+                <p className="text-emerald-500 font-bold text-sm mt-1 uppercase tracking-widest">
+                  IT Committee
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Copyright & Technical Stack Row */}
+          <div className="flex flex-col md:flex-row justify-between w-full items-center gap-6">
+            <p className="text-slate-500 text-[16px] font-medium">
+              © {new Date().getFullYear()}{" "}
+              <span className="text-slate-300">OMJ IT Committee</span>.
+            </p>
+          </div>
         </div>
       </footer>
     </main>
