@@ -22,7 +22,7 @@ export default async function SingleKhundi({ params }) {
       />
 
       {/* 2. Infinite Scroll Grid */}
-      <div className="mt-10">
+      <div className="md:mt-10">
         <InfiniteGrid allData={khundiData} type="Khundi" />
       </div>
 

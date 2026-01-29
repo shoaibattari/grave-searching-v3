@@ -7,6 +7,7 @@ import {
   FaUser,
   FaMapMarkerAlt,
   FaUsers,
+  FaCalendarAlt,
 } from "react-icons/fa";
 
 // Note: Yahan se "use client" hata diya hai taake async/await sahi kaam kare
@@ -29,7 +30,7 @@ export default async function GraveDetail({ params }) {
             href="/archive"
             className="text-emerald-600 underline mt-4 block"
           >
-            Archive par wapis jayen
+            Go Back Archive
           </Link>
         </div>
       </div>
@@ -37,8 +38,8 @@ export default async function GraveDetail({ params }) {
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 md:py-24  px-4">
-      <div className="max-w-3xl mx-auto">
+    <main className="min-h-screen bg-slate-50 pt-40 md:pt-40 px-4">
+      <div className="max-w-3xl mx-auto pb-4">
         {/* Simple Back Button */}
         <Link
           href="/archive"
@@ -48,40 +49,42 @@ export default async function GraveDetail({ params }) {
         </Link>
 
         {/* --- MAIN CARD --- */}
-        <div className="bg-white rounded-[2.5rem] shadow-xl overflow-hidden border border-slate-100">
+        <div className="bg-white rounded-2xl md:rounded-[2.5rem] shadow-xl overflow-hidden border border-slate-100">
           {/* Green Header */}
-          <div className="bg-emerald-800 p-8 text-white flex justify-between items-center">
+          <div className="bg-emerald-800 p-4 md:p-8 text-white flex justify-between items-center">
             <div>
-              <h1 className="text-2xl font-bold">Okhai Memon Jamat</h1>
+              <h1 className="md:text-2xl font-bold">Okhai Memon Jamat</h1>
               <p className="text-emerald-300 text-[10px] tracking-widest uppercase">
-                Digital Archive Record
+                Digital Grave Record
               </p>
             </div>
             <div className="text-right">
               <span className="text-[10px] opacity-60 block">GRAVE NO</span>
-              <span className="text-2xl font-black">#{record.GraveNo}</span>
+              <span className="md:text-2xl font-black"># {record.GraveNo}</span>
             </div>
           </div>
 
-          <div className="p-8 md:p-12">
+          <div className="p-4 md:p-12">
             <SectionHeading title="Grave" highlight="Details" align="left" />
 
             {/* Simple Data Rows */}
-            <div className="space-y-6 mt-8">
+            <div className="space-y-3 md:space-y-6 mt-4 md:mt-8">
+              <DetailRow label="Name:" value={record.Name} icon={<FaUser />} />
               <DetailRow
-                label="Marhoom ka Naam"
-                value={record.Name}
-                icon={<FaUser />}
-              />
-              <DetailRow
-                label="Khundi / Shajra"
+                label="Khundi:"
                 value={record.KHUNDI}
                 icon={<FaUsers />}
               />
               <DetailRow
-                label="Qabristan"
+                label="Location"
                 value={record.Graveyard}
                 icon={<FaMapMarkerAlt />}
+              />
+
+              <DetailRow
+                label="Passed On"
+                value={record.DOD}
+                icon={<FaCalendarAlt />}
               />
             </div>
           </div>
@@ -102,7 +105,7 @@ function DetailRow({ label, value, icon }) {
         <p className="text-[10px] text-slate-400 uppercase font-black tracking-wider">
           {label}
         </p>
-        <p className="text-lg font-bold text-slate-800 uppercase">
+        <p className="text-sm md:text-lg font-bold text-slate-800 uppercase">
           {value || "Available Nahi Hai"}
         </p>
       </div>

@@ -70,7 +70,7 @@ export default function InfiniteGrid({ allData }) {
             <input
               type="text"
               placeholder="Search Name or Grave No..."
-              className="w-full px-5 py-3 rounded-2xl bg-slate-50 border-none focus:ring-2 focus:ring-emerald-500 outline-none transition-all text-sm"
+              className="w-full px-5 py-3 rounded-2xl bg-slate-50 border-none ring-2 ring-emerald-500 outline-none transition-all text-sm"
               value={searchTerm}
               onChange={(e) => {
                 setSearchTerm(e.target.value);
@@ -84,7 +84,7 @@ export default function InfiniteGrid({ allData }) {
             <div className="md:col-span-4">
               <select
                 value={selectedGraveyard}
-                className="w-full px-5 py-3 rounded-2xl bg-slate-50 border-none focus:ring-2 focus:ring-emerald-500 outline-none text-sm cursor-pointer appearance-none"
+                className="w-full px-5 py-3 rounded-2xl bg-slate-50 border-none ring-2 ring-emerald-500 outline-none text-sm cursor-pointer appearance-none"
                 onChange={(e) => {
                   setSelectedGraveyard(e.target.value);
                   setDisplayCount(20);
@@ -107,7 +107,7 @@ export default function InfiniteGrid({ allData }) {
             <div className="md:col-span-4">
               <select
                 value={selectedKhundi}
-                className="w-full px-5 py-3 rounded-2xl bg-slate-50 border-none focus:ring-2 focus:ring-emerald-500 outline-none text-sm cursor-pointer appearance-none"
+                className="w-full px-5 py-3 rounded-2xl bg-slate-50 border-none ring-2 ring-emerald-500 outline-none text-sm cursor-pointer appearance-none"
                 onChange={(e) => {
                   setSelectedKhundi(e.target.value);
                   setDisplayCount(20);
@@ -128,7 +128,7 @@ export default function InfiniteGrid({ allData }) {
 
         {/* Results Info */}
         <div className="mt-4 px-2 flex justify-between items-center">
-          <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+          <span className="text-[8px] md:text-[10px] font-black text-slate-400 uppercase tracking-widest">
             Showing {Math.min(displayCount, filteredData.length)} of{" "}
             {filteredData.length} Records
           </span>

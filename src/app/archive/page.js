@@ -10,11 +10,11 @@ export default function GlobalArchive() {
         <SectionHeading
           title="Digital"
           highlight="Archive"
-          subtitle={`Search through our complete database of ${graveyardDatabase.length} burial records`}
+          subtitle={`Search through our complete database of ${graveyardDatabase.length} Grave records`}
         />
 
         {/* Global Search & Multi-Filter Grid */}
-        <div className="mt-10">
+        <div className="md:mt-10">
           {/* Yahan hum koi hideFilter pass nahi karenge taake dono dropdowns (Khundi & Graveyard) dikhai dein */}
           <InfiniteGrid allData={graveyardDatabase} />
         </div>

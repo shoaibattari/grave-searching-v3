@@ -19,11 +19,11 @@ export default function GraveyardDirectory() {
         <SectionHeading
           title="Graveyard"
           highlight="Directory"
-          subtitle={`Exploring records across ${uniqueGraveyards.length} burial sites`}
+          subtitle={`Exploring records across ${uniqueGraveyards.length} Graveyard sites`}
         />
 
         {/* 2. Dynamic Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-12">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:mt-12">
           {uniqueGraveyards.map((locName, index) => {
             // Har Graveyard ke liye records count karna
             const count = graveyardDatabase.filter(
@@ -41,19 +41,19 @@ export default function GraveyardDirectory() {
                 href={`/graveyard/${locName.toLowerCase()}`}
                 className="group"
               >
-                <div className="h-full flex flex-col items-center justify-center p-8 text-center bg-white border border-slate-100 rounded-[2.5rem] transition-all duration-300 group-hover:border-emerald-500 group-hover:shadow-2xl group-hover:shadow-emerald-900/10 group-hover:-translate-y-1">
+                <div className="h-full flex flex-col items-center justify-center p-4 md:p-8 text-center bg-white border border-slate-100 rounded-3xl md:rounded-[2.5rem] transition-all duration-300 group-hover:border-emerald-500 group-hover:shadow-2xl group-hover:shadow-emerald-900/10 group-hover:-translate-y-1">
                   {/* Icon */}
                   <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 mb-4 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300">
                     <FaMapMarkerAlt size={24} />
                   </div>
 
                   {/* Location Name */}
-                  <h3 className="text-xl font-bold text-slate-800 group-hover:text-emerald-900 mb-2">
+                  <h3 className="md:text-xl font-bold text-slate-800 group-hover:text-emerald-900 mt-4 md:mt-0 md:mb-2">
                     {formattedName}
                   </h3>
 
                   {/* Count Badge */}
-                  <div className="mt-auto pt-4 flex flex-col items-center border-t border-slate-50 w-full">
+                  <div className="mt-auto md:pt-4 flex flex-col items-center border-t border-slate-50 w-full">
                     <span className="text-2xl font-serif font-bold text-emerald-600">
                       <CountUp to={count} />
                     </span>
