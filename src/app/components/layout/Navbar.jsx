@@ -110,7 +110,7 @@ export default function Navbar() {
 
           {/* Mobile Toggle */}
           <button
-            className="md:hidden p-2 text-slate-600 hover:text-emerald-600 transition-colors"
+            className="md:hidden p-2 text-emerald-600 hover:text-emerald-600 transition-colors"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
