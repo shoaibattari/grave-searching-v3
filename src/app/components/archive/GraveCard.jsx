@@ -53,7 +53,7 @@ export default function GraveCard({ grave }) {
           {/* Location & Date Info */}
           <div className="grid grid-cols-2 gap-2 md:gap-4">
             <div className="flex items-center gap-1.5 md:gap-3">
-              <div className="p-2 bg-emerald-50 rounded-lg text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+              <div className="p-2 rounded-lg text-emerald-600 bg-emerald-600 transition-colors">
                 <FaMapMarkerAlt size={12} />
               </div>
               <div>

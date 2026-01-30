@@ -6,13 +6,12 @@ import { FaMapMarkerAlt, FaChevronRight, FaDirections } from "react-icons/fa";
 import { graveyardDatabase } from "../constant/database";
 import CountUp from "./ui/CountUp";
 
-// 1. Aapka provided data
 const MAP_LINKS = {
-  hubriver1: "https://maps.app.goo.gl/uPKanwD3tjwc6MbEA",
-  hubriver2: " https://maps.app.goo.gl/5XcuG4xvEi5RgpNg7",
-  hubriver3: "https://maps.app.goo.gl/LMopQ8rZHTbw9GLb9",
-  saaditown: "https://maps.app.goo.gl/ia2yisUKwW7WQx5Y8",
-  mewashah: "https://maps.app.goo.gl/3bJJmSXdHtVXVYBo9",
+  hubriver1: "https://maps.google.com/?q=Hub+River+Road+Cemetery+1",
+  hubriver2: "https://maps.google.com/?q=Hub+River+Road+Cemetery+2",
+  hubriver3: "https://maps.google.com/?q=Hub+River+Road+Cemetery+3",
+  saaditown: "https://maps.google.com/?q=Saadi+Town+Cemetery",
+  mewashah: "https://maps.google.com/?q=Mewashah+Cemetery",
 };
 
 export default function Graveyards() {
@@ -20,9 +19,10 @@ export default function Graveyards() {
     const uniqueNames = [
       ...new Set(graveyardDatabase.map((item) => item.Graveyard)),
     ].filter(Boolean);
-
+    // Alphabetical Sort Logic (A-Z)
+    uniqueNames.sort((a, b) => a.localeCompare(b));
     return uniqueNames.map((name) => {
-      const id = name.toLowerCase().replace(/\s+/g, ""); // "Hub River 1" -> "hubriver1"
+      const id = name.toLowerCase().replace(/\s+/g, "");
       return {
         id: name,
         slug: name.toLowerCase(),
@@ -31,7 +31,7 @@ export default function Graveyards() {
           .replace(/-/g, " "),
         mapUrl:
           MAP_LINKS[id] ||
-          `https://maps.google.com/?q=Mewa+Shah+Graveyard6{name}`,
+          `https://www.google.com/maps/search/${encodeURIComponent(name)}`,
       };
     });
   }, []);
@@ -57,45 +57,57 @@ export default function Graveyards() {
           viewport={{ once: true }}
           className="relative group"
         >
-          {/* Main Card: Website ke andar navigation ke liye */}
-          <Link href={`/graveyard/${loc.slug}`} className="block h-full">
-            <div className="h-full bg-white border border-slate-100 p-8 rounded-[2.5rem] transition-all duration-500 group-hover:bg-emerald-900 group-hover:shadow-2xl group-hover:shadow-emerald-900/30 flex flex-col items-center text-center">
-              {/* Animated Icon */}
-              <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-6 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-500 group-hover:rotate-[360deg]">
+          {/* Main Container */}
+          <div className="flex flex-col h-full bg-white border border-slate-100 rounded-[2.5rem] overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-emerald-900/20 lg:group-hover:bg-emerald-900 group">
+            {/* Upper Content: Clickable Area */}
+            <Link
+              href={`/graveyard/${loc.slug}`}
+              className="flex-1 p-8 flex flex-col items-center text-center"
+            >
+              <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-6 lg:group-hover:bg-emerald-500 lg:group-hover:text-white transition-all duration-500 lg:group-hover:rotate-[360deg]">
                 <FaMapMarkerAlt size={24} />
               </div>
 
-              <h3 className="text-xl font-black text-slate-800 group-hover:text-white mb-2 uppercase tracking-tight">
+              <h3 className="text-xl font-black text-slate-800 lg:group-hover:text-white mb-2 uppercase tracking-tight">
                 {loc.displayName}
               </h3>
 
               <div className="mt-auto">
-                <div className="text-3xl font-serif font-bold text-emerald-600 group-hover:text-emerald-300 transition-colors">
+                <div className="text-3xl font-serif font-bold text-emerald-600 lg:group-hover:text-emerald-300 transition-colors">
                   <CountUp to={counts[loc.id] || 0} />
                 </div>
-                <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-emerald-400/60">
+                <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 lg:group-hover:text-emerald-400/60">
                   Total Records
                 </p>
               </div>
 
-              {/* View Indicator */}
-              <div className="mt-6 flex items-center gap-2 text-emerald-600 group-hover:text-white text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0">
-                Open Records <FaChevronRight size={10} />
+              {/* Desktop View Indicator: Only visible on desktop hover */}
+              <div className="hidden lg:flex mt-6 items-center gap-2 text-white text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0">
+                View Records <FaChevronRight size={10} />
               </div>
-            </div>
-          </Link>
+            </Link>
 
-          {/* Get Directions Button: Seedha Google Maps par jane ke liye */}
-          <a
-            href={loc.mapUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="absolute top-5 right-5 p-3 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-2xl opacity-0 group-hover:opacity-100 hover:bg-emerald-500 hover:border-emerald-500 transition-all z-20 shadow-xl"
-            title="Get Directions"
-            onClick={(e) => e.stopPropagation()} // Taake card ka Link trigger na ho
-          >
-            <FaDirections size={20} />
-          </a>
+            {/* Bottom Actions: Visible on Mobile, Hover on Desktop */}
+            <div className="flex border-t border-slate-50 lg:border-none">
+              <Link
+                href={`/graveyard/${loc.slug}`}
+                className="flex-1 lg:hidden py-4 text-center text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 bg-emerald-50/50"
+              >
+                Open GraveYard
+              </Link>
+              <a
+                href={loc.mapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 lg:absolute lg:top-5 lg:right-5 p-4 lg:p-3 bg-slate-900 lg:bg-white/10 text-white lg:backdrop-blur-md lg:border lg:border-white/20 rounded-none lg:rounded-2xl opacity-100 lg:opacity-0 lg:group-hover:opacity-100 hover:bg-emerald-500 transition-all z-20 flex items-center justify-center gap-2 lg:gap-0"
+              >
+                <FaDirections size={18} />
+                <span className="lg:hidden text-[10px] font-black uppercase tracking-widest">
+                  Directions
+                </span>
+              </a>
+            </div>
+          </div>
         </motion.div>
       ))}
     </div>

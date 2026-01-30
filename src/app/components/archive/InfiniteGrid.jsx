@@ -93,6 +93,7 @@ export default function InfiniteGrid({ allData }) {
                 <option value="All">All Graveyards</option>
                 {dropdownOptions.graveyards
                   .filter((g) => g !== "All")
+                  .sort((a, b) => a.localeCompare(b))
                   .map((g) => (
                     <option key={g} value={g}>
                       {g.toUpperCase()}
