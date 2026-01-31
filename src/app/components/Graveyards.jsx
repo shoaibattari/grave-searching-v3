@@ -7,11 +7,11 @@ import { graveyardDatabase } from "../constant/database";
 import CountUp from "./ui/CountUp";
 
 const MAP_LINKS = {
-  hubriver1: "https://maps.google.com/?q=Hub+River+Road+Cemetery+1",
-  hubriver2: "https://maps.google.com/?q=Hub+River+Road+Cemetery+2",
-  hubriver3: "https://maps.google.com/?q=Hub+River+Road+Cemetery+3",
-  saaditown: "https://maps.google.com/?q=Saadi+Town+Cemetery",
-  mewashah: "https://maps.google.com/?q=Mewashah+Cemetery",
+  hubriver1: "https://maps.app.goo.gl/uPKanwD3tjwc6MbEA",
+  hubriver2: " https://maps.app.goo.gl/WrCzbbXuJBL1kMna8",
+  hubriver3: "https://maps.app.goo.gl/LMopQ8rZHTbw9GLb9",
+  mewashah: "https://maps.app.goo.gl/3bJJmSXdHtVXVYBo9",
+  saaditown: "https://maps.app.goo.gl/ia2yisUKwW7WQx5Y8",
 };
 
 export default function Graveyards() {
